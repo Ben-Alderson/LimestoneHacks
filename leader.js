@@ -2,6 +2,7 @@ function Leader(x, y, team) {
   this.size = 30
   this.moveSpeed = 1
 
+  this.deleted = false
   this.team = team
   this.x = x
   this.y = y
@@ -34,24 +35,24 @@ function Leader(x, y, team) {
     const friction = 0.9
     this.vx *= friction
     this.vy *= friction
-	
+
     this.move()
-	
+
     this.y += this.vy;
     this.x += this.vx
-	
-	if (this.x < this.size){
-		this.vx = Math.abs(this.vx);
-	}
-	if (this.y < this.size){
-		this.vy = Math.abs(this.vy);
-	}
-	if (this.x > canvas.width - this.size){
-		this.vx = 0 - Math.abs(this.vx);
-	}
-	if (this.y > canvas.height - this.size){
-		this.vy = 0 - Math.abs(this.vy);
-	}
+
+    if (this.x < this.size){
+      this.vx = Math.abs(this.vx + this.moveSpeed);
+    }
+    if (this.y < this.size){
+      this.vy = Math.abs(this.vy + this.moveSpeed);
+    }
+    if (this.x > canvas.width - this.size){
+      this.vx = 0 - Math.abs(this.vx + this.moveSpeed);
+    }
+    if (this.y > canvas.height - this.size){
+      this.vy = 0 - Math.abs(this.vy + this.moveSpeed);
+    }
   }
 
   this.draw = function() {

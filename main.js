@@ -6,6 +6,12 @@ function intersects(a, b) {
   return dist < Math.pow(a.size + b.size, 2)
 }
 
+window.onresize = function() {
+  canvas.width = document.body.clientWidth
+  canvas.height = document.body.clientHeight
+}
+window.onresize();
+
 var citizens = [];
 for(i = 0; i<100; i++)
   citizens.push(new Citizen(Math.random() * canvas.width, Math.random() * canvas.height))
@@ -44,6 +50,8 @@ function mainLoop() {
     c.update();
     c.draw()
   }
+
+  citizens = citizens.filter((e) => !e.deleted)
 }
 
 setInterval(mainLoop, 16)
