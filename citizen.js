@@ -22,6 +22,12 @@ function Citizen(x, y) {
 
     this.x = this.static_x + Math.random() * this.passion - this.passion/2;
     this.y = this.static_y + Math.random() * this.passion - this.passion/2;
+
+    if(this.attackProgress >= 100) {
+      this.team = this.attackTeam
+      this.attackTeam = "neutral"
+      this.attackProgress = 0
+    }
   }
 
   this.draw = function() {

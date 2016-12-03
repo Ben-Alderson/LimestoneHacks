@@ -15,7 +15,6 @@ function mainLoop() {
 
   for(i = 0; i < citizens.length; i++) {
     for(j = i+1; j < citizens.length; j++) {
-      console.log(intersects(citizens[i], citizens[j]))
       if(intersects(citizens[i], citizens[j])) {
         citizens[i].touch(citizens[j])
         citizens[j].touch(citizens[i])
