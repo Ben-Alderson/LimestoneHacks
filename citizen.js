@@ -14,8 +14,10 @@ function Citizen(x, y) {
 
   this.touch = function(other) {
     const push = 0.1
-    other.vx += (other.x - this.x) * push
-    other.vy += (other.y - this.y) * push
+    // if(this.team == "neutral" || other.is_citizen) {
+      other.vx += (other.x - this.x) * push
+      other.vy += (other.y - this.y) * push
+    // }
 
     if(other.is_citizen && other.team != this.team && other.team != "neutral" && this.team != "neutral") {
       other.deleted = true
@@ -28,22 +30,32 @@ function Citizen(x, y) {
     var dx = other.x - this.x
     var dy = other.y - this.y
 
-    var dist = Math.pow(dx, 2) + Math.pow(dy, 2)
+    var dist = Math.abs(dx) + Math.abs(dy)//Math.pow(dx, 2) + Math.pow(dy, 2)
+    var dx = dx / Math.sqrt(dist)
+    var dy = dy / Math.sqrt(dist)
 
-    if(other.team != this.team && this.x && other.x) {
-      this.vx -= pull*(dx/dy)/dist
-      this.vy -= pull*(dy/dx)/dist
+    if(other.team != this.team && this.x && other.x && this.team != "neutral" && other.team != "neutral") {
+      this.vx += pull*dx/Math.max(dist, 20)
+      this.vy += pull*dy/Math.max(dist, 20)
     }
   }
 
   this.update = function() {
     const friction = 0.98
     const passion_friction = 0.95
+    const max_speed = 10;
 
     this.static_x += this.vx
-    this.vx *= friction
     this.static_y += this.vy
-    this.vy *= friction
+    // if(this.team == "neutral") {
+      this.vx *= friction
+      this.vy *= friction
+    // } else {
+    //   this.vy = Math.max(this.vy, -max_speed)
+    //   this.vy = Math.min(this.vy, max_speed)
+    //   this.vx = Math.max(this.vx, -max_speed)
+    //   this.vx = Math.min(this.vx, max_speed)
+    // }
 
     this.x = this.static_x + Math.random() * this.passion - this.passion/2;
     this.y = this.static_y + Math.random() * this.passion - this.passion/2;

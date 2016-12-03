@@ -10,12 +10,27 @@ function Leader(x, y, team) {
   this.vy = 0
 
   this.attract = function(other) {
+    // const pull = 1.0
+    //
+    // var dx = other.x - this.x
+    // var dy = other.y - this.y
+    //
+    // var dist = Math.abs(dx) + Math.abs(dy)//Math.pow(dx, 2) + Math.pow(dy, 2)
+    // var dx = dx / Math.sqrt(dist)
+    // var dy = dy / Math.sqrt(dist)
+    //
+    // if(other.team != this.team && dx && dy && this.team != "neutral" && other.team != "neutral") {
+    //   this.vx += pull*dx/Math.max(dist, 20)
+    //   this.vy += pull*dy/Math.max(dist, 20)
+    // }
   }
 
   this.touch = function(other) {
     const push = 0.1
-    other.vx += (other.x - this.x) * push
-    other.vy += (other.y - this.y) * push
+    // if(other.team == "neutral" || !other.is_citizen) {
+      other.vx += (other.x - this.x) * push
+      other.vy += (other.y - this.y) * push
+    // }
 
     if(other.team == "neutral") {
       if(other.attackTeam == this.team) {
