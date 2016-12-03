@@ -2,6 +2,8 @@ function Citizen(x, y) {
   this.size = 10
 
   this.team = "neutral"
+  this.attackProgress = 0;
+  this.attackTeam = "neutral";
   this.passion = 1
   this.x = x
   this.y = y
@@ -19,6 +21,21 @@ function Citizen(x, y) {
   }
 
   this.draw = function() {
+	switch(this.attackTeam){
+	case "red":
+      ctx.fillStyle = "#ff0000"
+      ctx.strokeStyle = "#000000"
+      break
+    case "blue":
+      ctx.fillStyle = "#00ffff"
+      ctx.strokeStyle = "#000000"
+      break
+    case "neutral":
+      ctx.fillStyle = "#ffffff"
+      ctx.strokeStyle = "#000000"
+      break
+	}
+	
     switch(this.team) {
     case "red":
       ctx.fillStyle = "#ff0000"
