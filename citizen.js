@@ -2,11 +2,16 @@ function Citizen(x, y) {
   this.size = 10
 
   this.team = "neutral"
+<<<<<<< HEAD
   this.attackProgress = 50;
   this.attackTeam = "red";
+=======
+  this.attackProgress = 75;
+  this.attackTeam = "neutral";
+>>>>>>> origin/master
   this.passion = 1
-  this.x = x
-  this.y = y
+  this.static_x = x
+  this.static_y = y
   this.vx = 0
   this.vy = 0
 
@@ -14,10 +19,14 @@ function Citizen(x, y) {
   }
 
   this.update = function() {
-    this.x += this.vx
-    this.vx *= 0.9
-    this.y += this.vy
-    this.vy *= 0.9
+    const friction = 0.9
+    this.static_x += this.vx
+    this.vx *= friction
+    this.static_y += this.vy
+    this.vy *= friction
+
+    this.x = this.static_x + Math.random() * this.passion - this.passion/2;
+    this.y = this.static_y + Math.random() * this.passion - this.passion/2;
   }
 
   this.draw = function() {
@@ -31,11 +40,16 @@ function Citizen(x, y) {
       ctx.strokeStyle = "#00ffff"
       break
     case "neutral":
-      ctx.fillStyle = "#ffffff"
-      ctx.strokeStyle = "#ffffff"
+      ctx.fillStyle = "#eeeeee"
+      ctx.strokeStyle = "#0000000"
       break
 	}
 	
+
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y, this.size * 2, this.size * 2, 0, 0, this.attackProgress / 100 * 2 * Math.PI)
+    ctx.lineTo(this.x, this.y)
+    ctx.fill();
     switch(this.team) {
     case "red":
       ctx.fillStyle = "#ff0000"
@@ -51,7 +65,7 @@ function Citizen(x, y) {
       break
     }
     ctx.beginPath()
-    ctx.ellipse(this.x+Math.random()*this.passion, this.y+Math.random()*this.passion, this.size, this.size, 0, 0, 2 * Math.PI)
+    ctx.ellipse(this.x, this.y, this.size, this.size, 0, 0, 2 * Math.PI)
     ctx.stroke()
     ctx.fill()
   }
