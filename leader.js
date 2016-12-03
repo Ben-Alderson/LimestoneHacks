@@ -2,6 +2,7 @@ function Leader(x, y, team) {
   this.size = 30
   this.moveSpeed = 1
 
+  this.attackProgress = 0
   this.deleted = false
   this.team = team
   this.x = x
@@ -32,7 +33,7 @@ function Leader(x, y, team) {
       other.vy += (other.y - this.y) * push
     // }
 
-    if(other.team == "neutral") {
+    if(other.team == "neutral" && this.team != "dead") {
       if(other.attackTeam == this.team) {
         other.attackProgress += 10
         other.passion += 4
@@ -46,6 +47,9 @@ function Leader(x, y, team) {
         if(other.attackProgress <= 0)
           other.attackTeam = "neutral"
       }
+    } else if(other.team != this.team && other.is_citizen) {
+        this.attackProgress += 1
+        // other.team = "neutral"
     }
   }
 
@@ -72,9 +76,20 @@ function Leader(x, y, team) {
     this.y += this.vy;
     this.x += this.vx
 
+    if(this.attackProgress >= 100) {
+      this.team = "dead"
+      this.move = function() {}
+      this.attract = function() {}
+    }
   }
 
   this.draw = function() {
+    ctx.fillStyle = "#000000"
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y, this.size * 1.4, this.size * 1.4, 0, 0, this.attackProgress / 100 * 2 * Math.PI)
+    ctx.lineTo(this.x, this.y)
+    ctx.fill();
+
     setFillColour(this.team);
     ctx.strokeStyle = "#000000"
 

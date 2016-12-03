@@ -13,7 +13,7 @@ window.onresize = function() {
 window.onresize();
 
 var citizens = [];
-for(i = 0; i<201; i++)
+for(i = 0; i<11; i++)
   citizens.push(new Citizen(Math.random() * canvas.width, Math.random() * canvas.height))
 
 var leader_red = new Leader(100, 40, "red")
@@ -37,10 +37,10 @@ citizens.push(leader_blue)
 
 var leader_green = new Leader(90, 10, "green")
 leader_green.move = function(){
-	this.vx = Math.min(this.vx, 10);
-	this.vx = Math.max(this.vx, -10);
-	this.vy = Math.min(this.vy, 10);
-	this.vy = Math.max(this.vy, -10);
+	this.vx = Math.min(this.vx, 2);
+	this.vx = Math.max(this.vx, -2);
+	this.vy = Math.min(this.vy, 2);
+	this.vy = Math.max(this.vy, -2);
 }
 leader_green.attract = function(other){
     const pull = 10000.0
@@ -62,10 +62,10 @@ citizens.push(leader_green);
 
 var leader_yellow = new Leader(90, 9, "yellow");
 leader_yellow.move = function(){
-	this.vx = Math.min(this.vx, 10);
-	this.vx = Math.max(this.vx, -10);
-	this.vy = Math.min(this.vy, 10);
-	this.vy = Math.max(this.vy, -10);
+	this.vx = Math.min(this.vx, 2);
+	this.vx = Math.max(this.vx, -2);
+	this.vy = Math.min(this.vy, 2);
+	this.vy = Math.max(this.vy, -2);
 }
 leader_yellow.attract = function(other){
     const pull = 10000.0
@@ -83,8 +83,8 @@ leader_yellow.attract = function(other){
 	}
 }
 
-citizens.push(leader_yellow);   
-	
+citizens.push(leader_yellow);
+
 
 
 function mainLoop() {

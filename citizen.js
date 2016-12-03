@@ -20,7 +20,8 @@ function Citizen(x, y) {
     // }
 
     if(other.is_citizen && other.team != this.team && other.team != "neutral" && this.team != "neutral") {
-      other.deleted = true
+      other.team = "neutral"
+      this.team = "neutral"
     }
   }
 
@@ -34,7 +35,7 @@ function Citizen(x, y) {
     var dx = dx / Math.sqrt(dist)
     var dy = dy / Math.sqrt(dist)
 
-    if(other.team != this.team && this.x && other.x && this.team != "neutral" && other.team != "neutral") {
+    if(other.team != this.team && this.x && other.x && this.team != "neutral" && other.team != "neutral" && other.team != "dead") {
       this.vx += pull*dx/Math.max(dist, 20)
       this.vy += pull*dy/Math.max(dist, 20)
     }
@@ -118,9 +119,12 @@ function setFillColour(c) {
     case "green":
       ctx.fillStyle = "#00ff00"
       break
-	case "yellow":
-	  ctx.fillStyle = "#ffff00";
-	  break
+    case "yellow":
+      ctx.fillStyle = "#ffff00";
+      break
+    case "dead":
+      ctx.fillStyle = "#663300";
+      break
     case "neutral":
       ctx.fillStyle = "#ffffff"
       break
