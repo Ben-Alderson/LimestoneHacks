@@ -7,7 +7,7 @@ function intersects(a, b) {
 }
 
 var citizens = [];
-for(i = 0; i<100; i++)
+for(i = 0; i<10; i++)
   citizens.push(new Citizen(Math.random() * canvas.width, Math.random() * canvas.height))
 
 var leader_red = new Leader(100, 40, "red")

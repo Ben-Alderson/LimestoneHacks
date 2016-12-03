@@ -37,9 +37,6 @@ function Leader(x, y, team) {
 	
     this.move()
 	
-    this.y += this.vy;
-    this.x += this.vx
-	
 	if (this.x < this.size){
 		this.vx = Math.abs(this.vx);
 	}
@@ -52,6 +49,9 @@ function Leader(x, y, team) {
 	if (this.y > canvas.height - this.size){
 		this.vy = 0 - Math.abs(this.vy);
 	}
+	
+    this.y += this.vy;
+    this.x += this.vx
   }
 
   this.draw = function() {
