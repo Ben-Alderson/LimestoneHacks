@@ -1,10 +1,15 @@
+
+
 function Citizen(x, y) {
-  const size = 10
+  this.size = 10
 
   this.team = "neutral"
   this.passion = 1;
   this.x = x;
   this.y = y;
+
+  this.touch = function(other) {
+  }
 
   this.update = function() {
 
@@ -26,7 +31,7 @@ function Citizen(x, y) {
       break
     }
     ctx.beginPath()
-    ctx.ellipse(x+Math.random()*this.passion, y+Math.random()*this.passion, size, size, 0, 0, 2 * Math.PI);
+    ctx.ellipse(this.x+Math.random()*this.passion, this.y+Math.random()*this.passion, size, size, 0, 0, 2 * Math.PI);
     ctx.stroke()
     ctx.fill()
   }
