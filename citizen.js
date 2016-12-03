@@ -2,13 +2,8 @@ function Citizen(x, y) {
   this.size = 10
 
   this.team = "neutral"
-<<<<<<< HEAD
-  this.attackProgress = 50;
+  this.attackProgress = 60;
   this.attackTeam = "red";
-=======
-  this.attackProgress = 75;
-  this.attackTeam = "neutral";
->>>>>>> origin/master
   this.passion = 1
   this.static_x = x
   this.static_y = y
@@ -50,6 +45,7 @@ function Citizen(x, y) {
     ctx.ellipse(this.x, this.y, this.size * 2, this.size * 2, 0, 0, this.attackProgress / 100 * 2 * Math.PI)
     ctx.lineTo(this.x, this.y)
     ctx.fill();
+	
     switch(this.team) {
     case "red":
       ctx.fillStyle = "#ff0000"
