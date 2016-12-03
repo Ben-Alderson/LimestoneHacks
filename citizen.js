@@ -1,18 +1,21 @@
-
-
 function Citizen(x, y) {
   this.size = 10
 
   this.team = "neutral"
-  this.passion = 2;
-  this.x = x;
-  this.y = y;
+  this.passion = 1
+  this.x = x
+  this.y = y
+  this.vx = 0
+  this.vy = 0
 
   this.touch = function(other) {
   }
 
   this.update = function() {
-
+    this.x += this.vx;
+    this.vx *= 0.9;
+    this.y += this.vy;
+    this.vy *= 0.9;
   }
 
   this.draw = function() {
@@ -31,7 +34,7 @@ function Citizen(x, y) {
       break
     }
     ctx.beginPath()
-    ctx.ellipse(this.x+(Math.random()*this.passion)-this.passion*.5, (this.y+Math.random()*this.passion)-this.passion*.5, this.size, this.	size, 0, 0, 2 * Math.PI);
+    ctx.ellipse(this.x+(Math.random()*this.passion)-this.passion*.5, (this.y+Math.random()*this.passion)-this.passion*.5, this.size, this.	size, 0, 0, 2 * Math.PI)
     ctx.stroke()
     ctx.fill()
   }
