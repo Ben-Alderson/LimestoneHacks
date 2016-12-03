@@ -118,6 +118,9 @@ function setFillColour(c) {
     case "green":
       ctx.fillStyle = "#00ff00"
       break
+	case "yellow":
+	  ctx.fillStyle = "#ffff00";
+	  break
     case "neutral":
       ctx.fillStyle = "#ffffff"
       break

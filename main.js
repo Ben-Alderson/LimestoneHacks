@@ -13,7 +13,7 @@ window.onresize = function() {
 window.onresize();
 
 var citizens = [];
-for(i = 0; i<11; i++)
+for(i = 0; i<201; i++)
   citizens.push(new Citizen(Math.random() * canvas.width, Math.random() * canvas.height))
 
 var leader_red = new Leader(100, 40, "red")
@@ -59,6 +59,32 @@ leader_green.attract = function(other){
 }
 
 citizens.push(leader_green);
+
+var leader_yellow = new Leader(90, 9, "yellow");
+leader_yellow.move = function(){
+	this.vx = Math.min(this.vx, 10);
+	this.vx = Math.max(this.vx, -10);
+	this.vy = Math.min(this.vy, 10);
+	this.vy = Math.max(this.vy, -10);
+}
+leader_yellow.attract = function(other){
+    const pull = 10000.0
+
+    var dx = other.x - this.x
+    var dy = other.y - this.y
+
+    var dist = Math.pow(dx, 2) + Math.pow(dy, 2)
+    var dx = dx / Math.sqrt(dist)
+    var dy = dy / Math.sqrt(dist)
+
+    if(dx && dy && other.team == "neutral") {
+      this.vx += pull*dx/Math.max(dist, 20)
+      this.vy += pull*dy/Math.max(dist, 20)
+	}
+}
+
+citizens.push(leader_yellow);   
+	
 
 
 function mainLoop() {
