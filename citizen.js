@@ -12,7 +12,7 @@ function Citizen() {
       break
     }
 
-    ctx.fillRect(10 + Math.random()*10, 10+ Math.random()*10, 55, 50)
-    ctx.strokeRect(10 + Math.random()*10, 10, 55, 50)
+    ctx.fillRect(10 + Math.random()*10, 10 + Math.random()*10, 55, 50)
+    ctx.strokeRect(10 + Math.random()*10, 10 + Math.random()*10, 55, 50)
   }
 }
