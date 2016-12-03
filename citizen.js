@@ -24,7 +24,6 @@ function Citizen(x, y) {
       ctx.strokeStyle = "#000000"
       break
     }
-
     ctx.beginPath()
     ctx.ellipse(x, y, size, size, 0, 0, 2 * Math.PI);
     ctx.stroke()
