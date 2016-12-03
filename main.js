@@ -25,14 +25,41 @@ leader_red.move = function() {
 }
 citizens.push(leader_red)
 
-var leader_blue = new Leader(100, 40, "blue")
+var leader_blue = new Leader(100, 10, "blue")
 leader_blue.move = function() {
   if(isKeyDown(73)) this.vy -= this.moveSpeed // I
   if(isKeyDown(75)) this.vy += this.moveSpeed // K
   if(isKeyDown(74)) this.vx -= this.moveSpeed // J
   if(isKeyDown(76)) this.vx += this.moveSpeed // L
 }
+
 citizens.push(leader_blue)
+
+var leader_green = new Leader(90, 10, "green")
+leader_green.move = function(){
+	this.vx = Math.min(this.vx, 10);
+	this.vx = Math.max(this.vx, -10);
+	this.vy = Math.min(this.vy, 10);
+	this.vy = Math.max(this.vy, -10);
+}
+leader_green.attract = function(other){
+    const pull = 10000.0
+
+    var dx = other.x - this.x
+    var dy = other.y - this.y
+
+    var dist = Math.pow(dx, 2) + Math.pow(dy, 2)
+    var dx = dx / Math.sqrt(dist)
+    var dy = dy / Math.sqrt(dist)
+
+    if(dx && dy && other.team == "neutral") {
+      this.vx += pull*dx/Math.max(dist, 20)
+      this.vy += pull*dy/Math.max(dist, 20)
+    }
+}
+
+citizens.push(leader_green);
+
 
 function mainLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)

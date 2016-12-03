@@ -94,15 +94,15 @@ function Citizen(x, y) {
   switch(this.attackTeam){
     case "red":
       ctx.fillStyle = "#ff0000"
-      ctx.strokeStyle = "#ff0000"
       break
     case "blue":
       ctx.fillStyle = "#00ffff"
-      ctx.strokeStyle = "#00ffff"
       break
+	case "green":
+      ctx.fillStyle = "#00ff00"
+	  break
     case "neutral":
       ctx.fillStyle = "#ffffff"
-      ctx.strokeStyle = "#ffffff"
       break
 	}
 
@@ -115,17 +115,19 @@ function Citizen(x, y) {
     switch(this.team) {
     case "red":
       ctx.fillStyle = "#ff0000"
-      ctx.strokeStyle = "#000000"
       break
     case "blue":
       ctx.fillStyle = "#00ffff"
-      ctx.strokeStyle = "#000000"
       break
+	case "green":
+      ctx.fillStyle = "#00ff00"
+	  break
     case "neutral":
       ctx.fillStyle = "#ffffff"
-      ctx.strokeStyle = "#000000"
       break
     }
+    ctx.strokeStyle = "#000000"
+	
     ctx.beginPath()
     ctx.ellipse(this.x, this.y, this.size, this.size, 0, 0, 2 * Math.PI)
     ctx.stroke()
