@@ -1,27 +1,31 @@
 function Leader(x, y, team) {
   this.size = 30
-  this.moveSpeed = 1;
+  this.moveSpeed = 1
 
-  this.team = team;
-  this.x = x;
-  this.y = y;
+  this.team = team
+  this.x = x
+  this.y = y
+  this.vx = 0
+  this.vy = 0
 
   this.touch = function(other) {
-    console.log(other);
+    const push = 0.1
+    other.vx += (other.x - this.x) * push
+    other.vy += (other.y - this.y) * push
   }
 
   this.update = function() {
     if(isKeyDown(87)) { // W
-      this.y -= this.moveSpeed;
+      this.y -= this.moveSpeed
     }
     if(isKeyDown(83)) { // S
-      this.y += this.moveSpeed;
+      this.y += this.moveSpeed
     }
     if(isKeyDown(65)) { // A
-      this.x -= this.moveSpeed;
+      this.x -= this.moveSpeed
     }
     if(isKeyDown(68)) { // D
-      this.x += this.moveSpeed;
+      this.x += this.moveSpeed
     }
   }
 
@@ -38,7 +42,7 @@ function Leader(x, y, team) {
     }
 
     ctx.beginPath()
-    ctx.ellipse(this.x, this.y, this.size, this.size, 0, 0, 2 * Math.PI);
+    ctx.ellipse(this.x, this.y, this.size, this.size, 0, 0, 2 * Math.PI)
     ctx.stroke()
     ctx.fill()
   }
