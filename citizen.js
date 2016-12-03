@@ -2,7 +2,7 @@ function Citizen(x, y) {
   this.size = 10
 
   this.team = "neutral"
-  this.attackProgress = 0;
+  this.attackProgress = 75;
   this.attackTeam = "neutral";
   this.passion = 1
   this.static_x = x
@@ -35,12 +35,13 @@ function Citizen(x, y) {
         ctx.strokeStyle = "#000000"
         break
       case "neutral":
-        ctx.fillStyle = "#ffffff"
+        ctx.fillStyle = "#000000"
         ctx.strokeStyle = "#000000"
         break
     }
     ctx.beginPath();
-    ctx.ellipse(this.x, this.y, this.size * 2, this.size * 2, 0, 0, 1 * Math.PI)
+    ctx.ellipse(this.x, this.y, this.size * 2, this.size * 2, 0, 0, this.attackProgress / 100 * 2 * Math.PI)
+    ctx.lineTo(this.x, this.y)
     ctx.fill();
 
     switch(this.team) {
