@@ -14,25 +14,24 @@ function Leader(x, y, team) {
     other.vy += (other.y - this.y) * push
 
     if(other.team != this.team) {
-      other.passion += 4
-      other.attackTeam = this.team
-      other.attackProgress += 10
+      if(other.attackTeam == this.team) {
+        other.attackProgress += 10
+        other.passion += 4
+      } else if(other.attackTeam == "neutral") {
+        other.attackProgress += 10
+        other.passion += 4
+        other.attackTeam = this.team
+      } else {
+        other.attackProgress -= 10
+        other.passion += 4
+        if(other.attackProgress <= 0)
+          other.attackTeam = "neutral"
+      }
     }
   }
 
   this.update = function() {
-    if(isKeyDown(87)) { // W
-      this.y -= this.moveSpeed
-    }
-    if(isKeyDown(83)) { // S
-      this.y += this.moveSpeed
-    }
-    if(isKeyDown(65)) { // A
-      this.x -= this.moveSpeed
-    }
-    if(isKeyDown(68)) { // D
-      this.x += this.moveSpeed
-    }
+    this.move()
   }
 
   this.draw = function() {
