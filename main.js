@@ -69,8 +69,12 @@ aiGenesis("#ffff00")
 
 function mainLoop() {
   ctx.clearRect(0, 0, canvas.width, canvas.height)
-
-  for(i = 0; i < citizens.length; i++) {
+  var mode = "MENU"
+  switch(mode){
+  case "MENU":
+    break;    
+  case "BEES":
+	for(i = 0; i < citizens.length; i++) {
     for(j = i+1; j < citizens.length; j++) {
       if(intersects(citizens[i], citizens[j])) {
         citizens[i].touch(citizens[j])
@@ -79,14 +83,17 @@ function mainLoop() {
       citizens[i].attract(citizens[j])
       citizens[j].attract(citizens[i])
     }
-  }
+	
 
-  for(var c of citizens) {
-    c.update();
-    c.draw()
-  }
+    for(var c of citizens) {
+      c.update();
+      c.draw()
+    }
 
-  citizens = citizens.filter((e) => !e.deleted)
+    citizens = citizens.filter((e) => !e.deleted)
+	break;
+    }
+  }
 }
 
 setInterval(mainLoop, 16)
