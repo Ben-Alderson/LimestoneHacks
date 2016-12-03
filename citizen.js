@@ -38,7 +38,10 @@ function Citizen(x, y) {
         ctx.fillStyle = "#ffffff"
         ctx.strokeStyle = "#000000"
         break
-  	}
+    }
+    ctx.beginPath();
+    ctx.ellipse(this.x, this.y, this.size * 2, this.size * 2, 0, 0, 1 * Math.PI)
+    ctx.fill();
 
     switch(this.team) {
     case "red":
