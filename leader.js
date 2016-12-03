@@ -71,21 +71,11 @@ function Leader(x, y, team) {
 
     this.y += this.vy;
     this.x += this.vx
-	
+
   }
 
   this.draw = function() {
-    switch(this.team) {
-    case "red":
-      ctx.fillStyle = "#ff0000"
-      break
-    case "blue":
-      ctx.fillStyle = "#00ffff"
-      break
-	case "green":
-      ctx.fillStyle = "#00ff00"
-	  break
-    }
+    setFillColour(this.team);
     ctx.strokeStyle = "#000000"
 
     ctx.beginPath()

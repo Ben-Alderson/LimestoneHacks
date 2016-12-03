@@ -91,46 +91,35 @@ function Citizen(x, y) {
   }
 
   this.draw = function() {
-  switch(this.attackTeam){
-    case "red":
-      ctx.fillStyle = "#ff0000"
-      break
-    case "blue":
-      ctx.fillStyle = "#00ffff"
-      break
-	case "green":
-      ctx.fillStyle = "#00ff00"
-	  break
-    case "neutral":
-      ctx.fillStyle = "#ffffff"
-      break
-	}
-
+    setFillColour(this.attackTeam)
 
     ctx.beginPath();
     ctx.ellipse(this.x, this.y, this.size * 2, this.size * 2, 0, 0, this.attackProgress / 100 * 2 * Math.PI)
     ctx.lineTo(this.x, this.y)
     ctx.fill();
 
-    switch(this.team) {
+    setFillColour(this.team)
+    ctx.strokeStyle = "#000000"
+    ctx.beginPath()
+    ctx.ellipse(this.x, this.y, this.size, this.size, 0, 0, 2 * Math.PI)
+    ctx.stroke()
+    ctx.fill()
+  }
+}
+
+function setFillColour(c) {
+  switch(c){
     case "red":
       ctx.fillStyle = "#ff0000"
       break
     case "blue":
       ctx.fillStyle = "#00ffff"
       break
-	case "green":
+    case "green":
       ctx.fillStyle = "#00ff00"
-	  break
+      break
     case "neutral":
       ctx.fillStyle = "#ffffff"
       break
-    }
-    ctx.strokeStyle = "#000000"
-	
-    ctx.beginPath()
-    ctx.ellipse(this.x, this.y, this.size, this.size, 0, 0, 2 * Math.PI)
-    ctx.stroke()
-    ctx.fill()
-  }
+	}
 }
