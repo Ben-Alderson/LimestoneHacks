@@ -1,7 +1,7 @@
-function Citizen(x, y) {
-  const size = 10
+function Leader(x, y, team) {
+  const size = 30
 
-  this.team = "neutral"
+  this.team = team;
   this.x = x;
   this.y = y;
 
@@ -17,10 +17,6 @@ function Citizen(x, y) {
       break
     case "blue":
       ctx.fillStyle = "#00ffff"
-      ctx.strokeStyle = "#000000"
-      break
-    case "neutral":
-      ctx.fillStyle = "#ffffff"
       ctx.strokeStyle = "#000000"
       break
     }
