@@ -13,7 +13,7 @@ function Leader(x, y, team) {
     other.vx += (other.x - this.x) * push
     other.vy += (other.y - this.y) * push
 
-    if(other.team != this.team) {
+    if(other.team == "neutral") {
       if(other.attackTeam == this.team) {
         other.attackProgress += 10
         other.passion += 4
