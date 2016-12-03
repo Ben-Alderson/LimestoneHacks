@@ -11,8 +11,10 @@ citizens.push(new Citizen(40, 40))
 citizens.push(new Leader(100, 40, "red"))
 
 function mainLoop() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
 
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  ctx.fillStyle="#eeeeee";
+  ctx.fillRect(0,0,canvas.width, canvas.height);
   for(i = 0; i < citizens.length; i++) {
     for(j = i+1; j < citizens.length; j++) {
       if(intersects(citizens[i], citizens[j])) {
