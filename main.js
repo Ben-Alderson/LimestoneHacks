@@ -7,7 +7,8 @@ function intersects(a, b) {
 }
 
 var citizens = [];
-citizens.push(new Citizen(40, 40))
+for(i = 0; i<100; i++)
+  citizens.push(new Citizen(Math.random() * canvas.width, Math.random() * canvas.height))
 
 var leader_red = new Leader(100, 40, "red")
 leader_red.move = function() {
@@ -19,7 +20,6 @@ leader_red.move = function() {
 citizens.push(leader_red)
 
 var leader_blue = new Leader(100, 40, "blue")
-
 leader_blue.move = function() {
   if(isKeyDown(73)) this.vy -= this.moveSpeed // I
   if(isKeyDown(75)) this.vy += this.moveSpeed // K
@@ -29,10 +29,8 @@ leader_blue.move = function() {
 citizens.push(leader_blue)
 
 function mainLoop() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-  ctx.clearRect(0, 0, canvas.width, canvas.height);
-  ctx.fillStyle="#eeeeee";
-  ctx.fillRect(0,0,canvas.width, canvas.height);
   for(i = 0; i < citizens.length; i++) {
     for(j = i+1; j < citizens.length; j++) {
       if(intersects(citizens[i], citizens[j])) {
