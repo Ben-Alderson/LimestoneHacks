@@ -79,6 +79,15 @@ function Citizen(x, y) {
       this.attackTeam = "neutral"
       this.attackProgress = 0
     }
+
+    this.static_x += this.vx
+    this.vx *= friction
+    this.static_y += this.vy
+    this.vy *= friction
+
+    this.x = this.static_x + Math.random() * this.passion - this.passion/2;
+    this.y = this.static_y + Math.random() * this.passion - this.passion/2;
+    this.passion *= passion_friction
   }
 
   this.draw = function() {
