@@ -110,20 +110,11 @@ function Citizen(x, y) {
 
 function setFillColour(c) {
   switch(c){
-    case "red":
-      ctx.fillStyle = "#ff0000"
-      break
-    case "blue":
-      ctx.fillStyle = "#00ffff"
-      break
-    case "green":
-      ctx.fillStyle = "#00ff00"
-      break
-    case "yellow":
-      ctx.fillStyle = "#ffff00";
+    default:
+      ctx.fillStyle = c
       break
     case "dead":
-      ctx.fillStyle = "#663300";
+      ctx.fillStyle = "#663300"
       break
     case "neutral":
       ctx.fillStyle = "#ffffff"
