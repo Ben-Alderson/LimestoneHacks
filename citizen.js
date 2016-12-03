@@ -2,6 +2,7 @@ function Citizen(x, y) {
   const size = 10
 
   this.team = "neutral"
+  this.passion = 1;
   this.x = x;
   this.y = y;
 
@@ -25,7 +26,7 @@ function Citizen(x, y) {
       break
     }
     ctx.beginPath()
-    ctx.ellipse(x, y, size, size, 0, 0, 2 * Math.PI);
+    ctx.ellipse(x+Math.random()*this.passion, y+Math.random()*this.passion, size, size, 0, 0, 2 * Math.PI);
     ctx.stroke()
     ctx.fill()
   }
