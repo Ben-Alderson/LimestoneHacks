@@ -4,7 +4,7 @@ function Citizen(x, y) {
   this.team = "neutral"
   this.attackProgress = 0
   this.attackTeam = "neutral"
-  this.passion = 1
+  this.passion = 2
   this.static_x = x
   this.static_y = y
   this.vx = 0
@@ -15,6 +15,8 @@ function Citizen(x, y) {
 
   this.update = function() {
     const friction = 0.98
+    const passion_friction = 0.95
+	
     this.static_x += this.vx
     this.vx *= friction
     this.static_y += this.vy
@@ -22,6 +24,7 @@ function Citizen(x, y) {
 
     this.x = this.static_x + Math.random() * this.passion - this.passion/2;
     this.y = this.static_y + Math.random() * this.passion - this.passion/2;
+    this.passion *= passion_friction
 	
 	if (this.x < this.size){
 		this.vx = 5;
@@ -35,6 +38,7 @@ function Citizen(x, y) {
 	if (this.y > canvas.height - this.size){
 		this.vy = -5;
 	}
+	
 	
     if(this.attackProgress >= 100) {
       this.team = this.attackTeam

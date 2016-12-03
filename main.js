@@ -8,7 +8,25 @@ function intersects(a, b) {
 
 var citizens = [];
 citizens.push(new Citizen(40, 40))
-citizens.push(new Leader(100, 40, "red"))
+
+var leader_red = new Leader(100, 40, "red")
+leader_red.move = function() {
+  if(isKeyDown(87)) this.vy -= this.moveSpeed // W
+  if(isKeyDown(83)) this.vy += this.moveSpeed // S
+  if(isKeyDown(65)) this.vx -= this.moveSpeed // A
+  if(isKeyDown(68)) this.vx += this.moveSpeed // D
+}
+citizens.push(leader_red)
+
+var leader_blue = new Leader(100, 40, "blue")
+
+leader_blue.move = function() {
+  if(isKeyDown(73)) this.vy -= this.moveSpeed // I
+  if(isKeyDown(75)) this.vy += this.moveSpeed // K
+  if(isKeyDown(74)) this.vx -= this.moveSpeed // J
+  if(isKeyDown(76)) this.vx += this.moveSpeed // L
+}
+citizens.push(leader_blue)
 
 function mainLoop() {
 
