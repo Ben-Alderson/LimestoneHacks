@@ -22,6 +22,20 @@ function Citizen(x, y) {
     }
   }
 
+  this.attract = function(other) {
+    const pull = 10.0
+
+    var dx = other.x - this.x
+    var dy = other.y - this.y
+
+    var dist = Math.pow(dx, 2) + Math.pow(dy, 2)
+
+    if(other.team != this.team && this.x && other.x) {
+      this.vx -= pull*(dx/dy)/dist
+      this.vy -= pull*(dy/dx)/dist
+    }
+  }
+
   this.update = function() {
     const friction = 0.98
     const passion_friction = 0.95

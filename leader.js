@@ -9,6 +9,9 @@ function Leader(x, y, team) {
   this.vx = 0
   this.vy = 0
 
+  this.attract = function(other) {
+  }
+
   this.touch = function(other) {
     const push = 0.1
     other.vx += (other.x - this.x) * push
