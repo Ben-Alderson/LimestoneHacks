@@ -35,6 +35,13 @@ function Citizen(x, y) {
       ctx.strokeStyle = "#000000"
       break
 	}
+	ctx.beginPath();
+	ctx.moveTo(this.x, this.y);
+	ctx.stroke();
+	ctx.arc(this.x,this.y,this.size + 2,0,2*Math.PI*this.attackProgress/100);
+	ctx.stroke();
+	ctx.moveTo(this.x, this.y);
+	ctx.stroke();
 	
     switch(this.team) {
     case "red":
