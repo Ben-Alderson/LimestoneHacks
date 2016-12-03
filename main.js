@@ -43,6 +43,8 @@ function mainLoop() {
         citizens[i].touch(citizens[j])
         citizens[j].touch(citizens[i])
       }
+      citizens[i].attract(citizens[j])
+      citizens[j].attract(citizens[i])
     }
   }
 
