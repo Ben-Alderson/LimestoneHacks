@@ -12,7 +12,8 @@ function Leader(x, y, team) {
     const push = 0.1
     other.vx += (other.x - this.x) * push
     other.vy += (other.y - this.y) * push
-    other.passion += 1
+    other.attackTeam = this.team
+    other.attackProgress += 10
   }
 
   this.update = function() {

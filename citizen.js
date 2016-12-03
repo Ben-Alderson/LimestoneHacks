@@ -2,8 +2,8 @@ function Citizen(x, y) {
   this.size = 10
 
   this.team = "neutral"
-  this.attackProgress = 60;
-  this.attackTeam = "red";
+  this.attackProgress = 0
+  this.attackTeam = "neutral"
   this.passion = 1
   this.static_x = x
   this.static_y = y
@@ -25,8 +25,8 @@ function Citizen(x, y) {
   }
 
   this.draw = function() {
-	switch(this.attackTeam){
-	case "red":
+  switch(this.attackTeam){
+    case "red":
       ctx.fillStyle = "#ff0000"
       ctx.strokeStyle = "#ff0000"
       break
@@ -35,17 +35,17 @@ function Citizen(x, y) {
       ctx.strokeStyle = "#00ffff"
       break
     case "neutral":
-      ctx.fillStyle = "#eeeeee"
-      ctx.strokeStyle = "#0000000"
+      ctx.fillStyle = "#ffffff"
+      ctx.strokeStyle = "#ffffff"
       break
 	}
-	
+
 
     ctx.beginPath();
     ctx.ellipse(this.x, this.y, this.size * 2, this.size * 2, 0, 0, this.attackProgress / 100 * 2 * Math.PI)
     ctx.lineTo(this.x, this.y)
     ctx.fill();
-	
+
     switch(this.team) {
     case "red":
       ctx.fillStyle = "#ff0000"
