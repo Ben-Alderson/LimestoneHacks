@@ -12,10 +12,11 @@ function Citizen(x, y) {
   }
 
   this.update = function() {
+    const friction = 0.9
     this.x += this.vx
-    this.vx *= 0.9
+    this.vx *= friction
     this.y += this.vy
-    this.vy *= 0.9
+    this.vy *= friction
   }
 
   this.draw = function() {
