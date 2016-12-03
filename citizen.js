@@ -1,6 +1,8 @@
 function Citizen(x, y) {
   this.size = 10
 
+  this.deleted = false
+  this.is_citizen = true
   this.team = "neutral"
   this.attackProgress = 0
   this.attackTeam = "neutral"
@@ -14,6 +16,10 @@ function Citizen(x, y) {
     const push = 0.1
     other.vx += (other.x - this.x) * push
     other.vy += (other.y - this.y) * push
+
+    if(other.is_citizen && other.team != this.team && other.team != "neutral" && this.team != "neutral") {
+      other.deleted = true
+    }
   }
 
   this.update = function() {
@@ -21,16 +27,16 @@ function Citizen(x, y) {
     const passion_friction = 0.95
 
     if (this.x < this.size){
-      this.vx = 5;
+      this.vx = Math.abs(this.vx + 1);
     }
     if (this.y < this.size){
-      this.vy = 5;
+      this.vy = Math.abs(this.vy + 1);
     }
     if (this.x > canvas.width - this.size){
-      this.vx = -5;
+      this.vx = 0 - Math.abs(this.vx + 1);
     }
     if (this.y > canvas.height - this.size){
-      this.vy = -5;
+      this.vy = 0 - Math.abs(this.vy + 1);
     }
 
     if(this.attackProgress >= 100) {
