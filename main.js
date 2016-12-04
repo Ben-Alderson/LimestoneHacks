@@ -129,7 +129,7 @@ var mode = "PREMENU"
 function menu() {
   switch(mode){
   case "PREMENU":
-    ctx.fillStyle = "#eeeeee"
+    ctx.fillStyle = "#ffffee" //background
     ctx.fillRect(0, 0, canvas.width, canvas.height)
     genocide()
     for(i=0;i<30;i++) citizenGenesis()
@@ -138,17 +138,15 @@ function menu() {
   case "MENU":
     mainLoop()
 	
-	ctx.fillStyle = "#00ffff";
+	ctx.fillStyle = "#00ffff";//title
 	var titleWidth = 600;
 	var titleHeight = 50;
 	
 	ctx.fillRect(canvas.width*.5 - titleWidth*.5, 100, titleWidth, titleHeight);
 	
-	ctx.fillStyle = "#000000";
+	ctx.fillStyle = "#000000";//BEEEES
 	ctx.font="50px Georgia";
-	ctx.fillText("NOT THE BEEEEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSSSSSSS!",canvas.width*.5 - titleWidth*.5,143);
-	
-	
+	ctx.fillText("NOT THE BEEEESSSSSS!",canvas.width*.5 - titleWidth*.5,143);
 	
 	ctx.fillStyle = "#dddddd";
 	ctx.fillRect(canvas.width*.5 - titleWidth*.5, canvas.height - 100 - 47, titleWidth, titleHeight);
