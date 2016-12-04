@@ -137,17 +137,34 @@ function menu() {
     mode = "MENU"
   case "MENU":
     mainLoop()
+
+    ctx.fillStyle = "#00ffff";
+    var titleWidth = 600;
+    var titleHeight = 50;
+
+    ctx.fillRect(canvas.width*.5 - titleWidth*.5, 100, titleWidth, titleHeight);
+
+    ctx.fillStyle = "#000000";
+    ctx.font="50px Georgia";
+    ctx.fillText("NOT THE BEEEEEEEEEEEEEEEESSSSSSSSSSSSSSSSSSSSSSSSS!",canvas.width*.5 - titleWidth*.5,143);
+
+    ctx.fillStyle = "#dddddd";
+    ctx.fillRect(canvas.width*.5 - titleWidth*.5, canvas.height - 100 - 47, titleWidth, titleHeight);
+    ctx.fillStyle = "#00ffff";
+    ctx.fillStyle = "#000000";
+    ctx.font="45px Georgia";
+    ctx.fillText("Press Enter to Start the Game",canvas.width*.5 - titleWidth*.5,canvas.height - 100);
+
     for(c of citizens) {
       if(c.team == "dead") {
         aiGenesis(randomColor())
         c.deleted = true;
       }
     }
-    ctx.fillStyle = "#00ffff";
 
-    ctx.fillRect(canvas.width*.5 - titleWidth*.5, 100, titleWidth, titleHeight);
-    ctx.fillRect(canvas.width*.5 - titleWidth*.5, canvas.height - 100, titleWidth, titleHeight);
-    // ctx.fillRect(canvas.width*.5 - titleWidth*.5, 300, titleWidth, titleHeight);
+    if(isKeyDown(13)) {
+      mode = "PREBEES"
+    }
     break
   case "PREBEES":
     genocide()
