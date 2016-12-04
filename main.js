@@ -101,15 +101,13 @@ function menu() {
     mode = "MENU"
   case "MENU":
     mainLoop()
-	ctx.fillStyle = "#000000";
+	ctx.fillStyle = "#00ffff";
 	var titleWidth = 600;
 	var titleHeight = 50;
 	
 	ctx.fillRect(canvas.width*.5 - titleWidth*.5, 100, titleWidth, titleHeight);
 	ctx.fillRect(canvas.width*.5 - titleWidth*.5, 200, titleWidth, titleHeight);
 	ctx.fillRect(canvas.width*.5 - titleWidth*.5, 300, titleWidth, titleHeight);
-	
-	var middleMenu
     break
   case "PREBEES":
     genocide()
