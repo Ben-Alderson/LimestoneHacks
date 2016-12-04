@@ -177,7 +177,47 @@ function menu() {
   case "BEES":
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     mainLoop()
+    var count = 0
+    for(c of citizens) {
+      if(c.team == "dead") {
+        count += 1
+      }
+    }
+    // if(count == 3)
+      // mode = "DED"
     break
+  // case "DED":
+  //   ctx.clearRect(0, 0, canvas.width, canvas.height)
+  //   mainLoop();
+  //   ctx.fillStyle = "#00ffff";
+  //   var titleWidth = 600;
+  //   var titleHeight = 50;
+  //
+  //   ctx.fillRect(canvas.width*.5 - titleWidth*.5, 100, titleWidth, titleHeight);
+  //
+  //   ctx.fillStyle = "#000000";
+  //   ctx.font="50px Georgia";
+  //   switch(citizens.filter(function(c) {!c.is_citizen && c.team != "dead"})[0].team) {
+  //     case "#ff0000":
+  //       ctx.fillText("RED WINS",canvas.width*.5 - titleWidth*.5,143);
+  //       break
+  //     case "#00ffff":
+  //       ctx.fillText("BLUE WINS",canvas.width*.5 - titleWidth*.5,143);
+  //       break
+  //     case "#00ff00":
+  //       ctx.fillText("GREEN WINS",canvas.width*.5 - titleWidth*.5,143);
+  //       break
+  //     case "#ffff00":
+  //       ctx.fillText("YELLOW WINS",canvas.width*.5 - titleWidth*.5,143);
+  //       break
+  //   }
+  //
+  //   ctx.fillStyle = "#dddddd";
+  //   ctx.fillRect(canvas.width*.5 - titleWidth*.5, canvas.height - 100 - 47, titleWidth, titleHeight);
+  //   ctx.fillStyle = "#00ffff";
+  //   ctx.fillStyle = "#000000";
+  //   ctx.font="45px Georgia";
+  //   ctx.fillText("Press Enter to Start the Game",canvas.width*.5 - titleWidth*.5,canvas.height - 100);
   }
 }
 
