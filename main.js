@@ -11,10 +11,10 @@ var citizens = [];
 function aiGenesis(colour) {
   var new_ai = new Leader(Math.random() * canvas.width, Math.random() * canvas.height, colour)
   new_ai.move = function(){
-  	this.vx = Math.min(this.vx, 2);
-  	this.vx = Math.max(this.vx, -2);
-  	this.vy = Math.min(this.vy, 2);
-  	this.vy = Math.max(this.vy, -2);
+  	this.vx = Math.min(this.vx, 3);
+  	this.vx = Math.max(this.vx, -3);
+  	this.vy = Math.min(this.vy, 3);
+  	this.vy = Math.max(this.vy, -3);
   }
   new_ai.attract = function(other){
       const pull = 10000.0
@@ -173,7 +173,7 @@ function menu() {
     break
   case "PREBEES":
     genocide()
-    for(i = 0; i<11; i++) citizenGenesis()
+    for(i = 0; i<21; i++) citizenGenesis()
     playerGenesis("left", "#ff0000")
     playerGenesis("right", "#00ffff")
     aiGenesis("#00ff00")
@@ -181,6 +181,9 @@ function menu() {
     mode = "BEES"
   case "BEES":
     ctx.clearRect(0, 0, canvas.width, canvas.height)
+	ctx.fillStyle = "#eeeeee";
+	ctx.font="italic 45px Georgia";
+	ctx.fillText("Controls: WASD / IJKL", canvas.width*.5 - 250,canvas.height*.5);
     mainLoop()
     var count = 0
     for(c of citizens) {
