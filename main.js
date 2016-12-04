@@ -54,7 +54,7 @@ function playerGenesis(side, colour) {
 }
 
 function randomColor() {
-  return "#"+((1<<24)*Math.random()|0).toString(16)
+  return "hsl(" + Math.random()*360 + ", 100%, 50%)"
 }
 
 function citizenGenesis() {
@@ -111,21 +111,31 @@ canvas.onclick = function(e) {
     y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
   }
 
-  if(inRectangle(x, y)){}
+  // if(inRectangle(x, y, canvas.width*.5 - titleWidth*.5, 100, titleWidth, titleHeight)) {
+  //   mode =
+  // }
+  if(inRectangle(x, y, canvas.width*.5 - titleWidth*.5, 200, titleWidth, titleHeight)) {
+    mode = "PREBEES"
+  }
+  // if(inRectangle(x, y, canvas.width*.5 - titleWidth*.5, 300, titleWidth, titleHeight)) {
+  //   console.log(3);
+  // }
 }
 
+var titleWidth = 600;
+var titleHeight = 50;
 var currentSelection;
 var mode = "PREMENU"
 function menu() {
   switch(mode){
   case "PREMENU":
+    ctx.fillStyle = "#eeeeee"
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
     genocide()
     for(i=0;i<30;i++) citizenGenesis()
     for(i=0;i<4;i++) aiGenesis(randomColor())
     mode = "MENU"
   case "MENU":
-    ctx.fillStyle = "#eeeeee"
-    ctx.fillRect(0, 0, canvas.width, canvas.height)
     mainLoop()
     for(c of citizens) {
       if(c.team == "dead") {
@@ -133,13 +143,11 @@ function menu() {
         c.deleted = true;
       }
     }
-    ctx.fillStyle = "#000000";
-    var titleWidth = 600;
-    var titleHeight = 50;
+    ctx.fillStyle = "#00ffff";
 
     ctx.fillRect(canvas.width*.5 - titleWidth*.5, 100, titleWidth, titleHeight);
     ctx.fillRect(canvas.width*.5 - titleWidth*.5, 200, titleWidth, titleHeight);
-    ctx.fillRect(canvas.width*.5 - titleWidth*.5, 300, titleWidth, titleHeight);
+    // ctx.fillRect(canvas.width*.5 - titleWidth*.5, 300, titleWidth, titleHeight);
     break
   case "PREBEES":
     genocide()
