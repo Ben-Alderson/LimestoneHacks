@@ -54,7 +54,7 @@ function playerGenesis(side, colour) {
 }
 
 function randomColor() {
-  return "hsl(" + Math.random()*360 + ", 100%, 50%)"
+  return "hsl(" + (Math.random()*10+ 50) + ", 100%, 50%)"
 }
 
 function citizenGenesis() {
