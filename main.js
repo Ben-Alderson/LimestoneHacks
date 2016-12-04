@@ -138,21 +138,26 @@ function menu() {
   case "MENU":
     mainLoop()
 	
-	ctx.fillStyle = "#00ffff";//title
-	var titleWidth = 600;
+	var titleWidth = 640;
 	var titleHeight = 50;
+	ctx.fillStyle = "#000000";//title
+	ctx.fillRect(canvas.width*.5 - titleWidth*.5 - 5, 100 - 5, titleWidth + 10, titleHeight + 10);
+	
+	ctx.fillStyle = "#ffff33";//title
 	
 	ctx.fillRect(canvas.width*.5 - titleWidth*.5, 100, titleWidth, titleHeight);
 	
+	
 	ctx.fillStyle = "#000000";//BEEEES
 	ctx.font="50px Georgia";
-	ctx.fillText("NOT THE BEEEESSSSSS!",canvas.width*.5 - titleWidth*.5,143);
+	ctx.fillText("NOT THE BEEEESSSSSSSS!",canvas.width*.5 - titleWidth*.5,143);
 	
-	ctx.fillStyle = "#dddddd";
-	ctx.fillRect(canvas.width*.5 - titleWidth*.5, canvas.height - 100 - 47, titleWidth, titleHeight);
+	ctx.fillStyle = "#dddddd"; //background
+	ctx.fillRect(canvas.width*.5 - titleWidth*.5 - 4, canvas.height - 100 - 40, titleWidth - 23, titleHeight);
+	
 	ctx.fillStyle = "#00ffff";
 	ctx.fillStyle = "#000000";
-	ctx.font="45px Georgia";
+	ctx.font="italic 45px Georgia";
 	ctx.fillText("Press Enter to Start the Game",canvas.width*.5 - titleWidth*.5,canvas.height - 100);
 	
     for(c of citizens) {
