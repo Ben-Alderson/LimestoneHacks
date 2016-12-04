@@ -53,6 +53,18 @@ function playerGenesis(side, colour) {
   citizens.push(new_player)
 }
 
+function randomColor() {
+  return "rgb(" + Math.random()*255.0 + ", " + Math.random()*255.0 + ", " + Math.random()*255.0 + ")"
+}
+
+function citizenGenesis() {
+  citizens.push(new Citizen(Math.random() * canvas.width, Math.random() * canvas.height))
+}
+
+function genocide() {
+  citizens = []
+}
+
 window.onresize = function() {
   canvas.width = document.body.clientWidth
   canvas.height = document.body.clientHeight
@@ -68,12 +80,6 @@ aiGenesis("#00ff00")
 aiGenesis("#ffff00")
 
 function mainLoop() {
-  ctx.clearRect(0, 0, canvas.width, canvas.height)
-  var mode = "MENU"
-  switch(mode){
-  case "MENU":
-    break;    
-  case "BEES":
 	for(i = 0; i < citizens.length; i++) {
     for(j = i+1; j < citizens.length; j++) {
       if(intersects(citizens[i], citizens[j])) {
@@ -83,17 +89,33 @@ function mainLoop() {
       citizens[i].attract(citizens[j])
       citizens[j].attract(citizens[i])
     }
-	
+  }
+  
+  for(var c of citizens) {
+    c.update();
+    c.draw()
+  }
 
-    for(var c of citizens) {
-      c.update();
-      c.draw()
-    }
+  citizens = citizens.filter((e) => !e.deleted)
+}
 
-    citizens = citizens.filter((e) => !e.deleted)
-	break;
-    }
+var mode = "BEES"
+function menu() {
+  switch(mode){
+  case "PREMENU":
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    genocide()
+    for(i=0;i<10;i++) citizenGenesis()
+    for(i=0;i<4;i++) aiGenesis(randomColor())
+    mode = "MENU"
+  case "MENU":
+    mainLoop()
+    break
+  case "BEES":
+    ctx.clearRect(0, 0, canvas.width, canvas.height)
+    mainLoop()
+    break
   }
 }
 
-setInterval(mainLoop, 16)
+setInterval(menu, 16)
