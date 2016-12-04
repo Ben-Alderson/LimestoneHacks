@@ -71,14 +71,6 @@ window.onresize = function() {
 }
 window.onresize();
 
-for(i = 0; i<11; i++)
-  citizens.push(new Citizen(Math.random() * canvas.width, Math.random() * canvas.height))
-
-playerGenesis("left", "#ff0000")
-playerGenesis("right", "#00ffff")
-aiGenesis("#00ff00")
-aiGenesis("#ffff00")
-
 function mainLoop() {
 	for(i = 0; i < citizens.length; i++) {
     for(j = i+1; j < citizens.length; j++) {
@@ -90,7 +82,7 @@ function mainLoop() {
       citizens[j].attract(citizens[i])
     }
   }
-  
+
   for(var c of citizens) {
     c.update();
     c.draw()
@@ -99,7 +91,7 @@ function mainLoop() {
   citizens = citizens.filter((e) => !e.deleted)
 }
 
-var mode = "BEES"
+var mode = "PREBEES"
 function menu() {
   switch(mode){
   case "PREMENU":
@@ -111,6 +103,14 @@ function menu() {
   case "MENU":
     mainLoop()
     break
+  case "PREBEES":
+    genocide()
+    for(i = 0; i<11; i++) citizenGenesis()
+    playerGenesis("left", "#ff0000")
+    playerGenesis("right", "#00ffff")
+    aiGenesis("#00ff00")
+    aiGenesis("#ffff00")
+    mode = "BEES"
   case "BEES":
     ctx.clearRect(0, 0, canvas.width, canvas.height)
     mainLoop()
