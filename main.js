@@ -54,7 +54,7 @@ function playerGenesis(side, colour) {
 }
 
 function randomColor() {
-  return "rgb(" + Math.random()*255.0 + ", " + Math.random()*255.0 + ", " + Math.random()*255.0 + ")"
+  return "#"+((1<<24)*Math.random()|0).toString(16)
 }
 
 function citizenGenesis() {
@@ -91,17 +91,47 @@ function mainLoop() {
   citizens = citizens.filter((e) => !e.deleted)
 }
 
-var mode = "PREBEES"
+function inRectangle(tx, ty, x, y, w, h) {
+  if(tx < x || ty < y || tx > x + w || ty > y + h) {
+    return false;
+  } else {
+    return true;
+  }
+}
+
+canvas.onclick = function(e) {
+  var x;
+  var y;
+  if (e.pageX || e.pageY) {
+    x = e.pageX;
+    y = e.pageY;
+  }
+  else {
+    x = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+    y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+  }
+
+  if(inRectangle(x, y))
+}
+
+var mode = "PREMENU"
 function menu() {
   switch(mode){
   case "PREMENU":
-    ctx.clearRect(0, 0, canvas.width, canvas.height)
     genocide()
-    for(i=0;i<10;i++) citizenGenesis()
+    for(i=0;i<30;i++) citizenGenesis()
     for(i=0;i<4;i++) aiGenesis(randomColor())
     mode = "MENU"
   case "MENU":
+    ctx.fillStyle = "#eeeeee"
+    ctx.fillRect(0, 0, canvas.width, canvas.height)
     mainLoop()
+    for(c of citizens) {
+      if(c.team == "dead") {
+        aiGenesis(randomColor())
+        c.deleted = true;
+      }
+    }
     break
   case "PREBEES":
     genocide()
