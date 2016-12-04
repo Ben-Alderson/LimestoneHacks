@@ -114,7 +114,7 @@ canvas.onclick = function(e) {
   // if(inRectangle(x, y, canvas.width*.5 - titleWidth*.5, 100, titleWidth, titleHeight)) {
   //   mode =
   // }
-  if(inRectangle(x, y, canvas.width*.5 - titleWidth*.5, 200, titleWidth, titleHeight)) {
+  if(inRectangle(x, y, canvas.width*.5 - titleWidth*.5, canvas.height - 100 - 47, titleWidth, titleHeight)) {
     mode = "PREBEES"
   }
   // if(inRectangle(x, y, canvas.width*.5 - titleWidth*.5, 300, titleWidth, titleHeight)) {
@@ -146,7 +146,7 @@ function menu() {
     ctx.fillStyle = "#00ffff";
 
     ctx.fillRect(canvas.width*.5 - titleWidth*.5, 100, titleWidth, titleHeight);
-    ctx.fillRect(canvas.width*.5 - titleWidth*.5, 200, titleWidth, titleHeight);
+    ctx.fillRect(canvas.width*.5 - titleWidth*.5, canvas.height - 100, titleWidth, titleHeight);
     // ctx.fillRect(canvas.width*.5 - titleWidth*.5, 300, titleWidth, titleHeight);
     break
   case "PREBEES":
