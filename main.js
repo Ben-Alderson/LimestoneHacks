@@ -111,9 +111,10 @@ canvas.onclick = function(e) {
     y = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
   }
 
-  if(inRectangle(x, y))
+  if(inRectangle(x, y)){}
 }
 
+var currentSelection;
 var mode = "PREMENU"
 function menu() {
   switch(mode){
@@ -132,6 +133,13 @@ function menu() {
         c.deleted = true;
       }
     }
+    ctx.fillStyle = "#000000";
+    var titleWidth = 600;
+    var titleHeight = 50;
+
+    ctx.fillRect(canvas.width*.5 - titleWidth*.5, 100, titleWidth, titleHeight);
+    ctx.fillRect(canvas.width*.5 - titleWidth*.5, 200, titleWidth, titleHeight);
+    ctx.fillRect(canvas.width*.5 - titleWidth*.5, 300, titleWidth, titleHeight);
     break
   case "PREBEES":
     genocide()
